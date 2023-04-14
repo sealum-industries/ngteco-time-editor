@@ -1,0 +1,55 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlserver"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String @id @default(cuid())
+  name      String @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  password  Password?
+}
+
+model Password {
+  hash      String
+  user      User   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  userId    String @unique
+}
+
+model TimeSheet {
+  id          String @id @default(cuid())
+  pp_from     String
+  pp_to       String
+  employees   TimeSheetEmployees[]
+}
+
+model TimeSheetEmployees {
+  id            String @id @default(cuid())
+  timesheet     TimeSheet @relation(fields: [timesheetId], references: [id], onDelete: Cascade)
+  timesheetId   String
+  name          String
+  total_calc    Float
+  total_proper  Float
+  times         TimeSheetTimes[]
+}
+
+model TimeSheetTimes {
+  id            String @id @default(cuid())
+  employee      TimeSheetEmployees @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  employeeId    String
+  day           String
+  date          String
+  in            String
+  out           String
+  note          String
+  total_calc    Float
+  total_proper  Float
+}
