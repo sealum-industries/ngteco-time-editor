@@ -84,7 +84,7 @@ const TimeSheetDownloadPrint = () => {
   useEffect(() => {
     if (loaderData && loaderData.success) {
       setTimesheet(loaderData.timesheet);
-      console.log(loaderData.timesheet);
+      // console.log(loaderData.timesheet);
     }
   }, [loaderData]);
 

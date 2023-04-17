@@ -26,7 +26,7 @@ const TimeSheetEmployee = ({ employee, odd, handleDoubleClick }: TimeSheetEmploy
 
   return (
     <>
-      <div className={clsx('flex border-l border-r border-sky-700', !odd && 'bg-sky-100')}>
+      <div className={clsx('flex border-l border-r border-sky-700', !odd ? 'bg-sky-100' : 'bg-white')}>
         <div className="flex items-center w-32 border-r border-gray-300 pl-2">{employee.name}</div>
         <div className="flex flex-col w-20 border-r border-sky-700">
           <div className="flex justify-end mr-1 text-red-400 text-sm pt-4">In:</div>

@@ -13,7 +13,7 @@ import HomeSVG from '~/svg/home';
 import SaveSVG from '~/svg/save';
 
 export const action: ActionFunction = async ({ request }): Promise<TypedResponse<TimeSheetResultType>> => {
-  console.log('timesheets.$id ACTION');
+  // console.log('timesheets.$id ACTION');
   const formData = await request.formData();
   const timesheetRaw = formData.get('timesheet') as File;
   const timesheet = JSON.parse(await timesheetRaw.text());
@@ -40,7 +40,7 @@ const TimeSheetDetails = () => {
     const ts_s = JSON.stringify(timesheet, null, 0);
     const timesheetBlob = new Blob([ts_s], { type: 'application/json' });
     const timesheetFile = new File([timesheetBlob], 'myblobfile');
-    console.log('blob', await timesheetFile.text());
+    // console.log('blob', await timesheetFile.text());
     formData.append('timesheet', timesheetFile, 'blobname');
     submit(formData, { method: 'post', action: location.pathname, encType: 'multipart/form-data' });
   };

@@ -22,7 +22,7 @@ type ActionDataType = TimeSheetLoadResultType & {
 };
 
 export const action: ActionFunction = async ({ request }): Promise<TypedResponse<ActionDataType>> => {
-  console.log('timesheets.new ACTION');
+  // console.log('timesheets.new ACTION');
   const userId = await requireUserId(request);
 
   const uploadHandler = unstable_composeUploadHandlers(
@@ -80,11 +80,7 @@ export default function TimeSheetNew() {
       <h1 className="text-2xl font-semibold mb-1">Import New Timesheet</h1>
       <hr className="mb-4" />
       {location.pathname === '/timesheets/new' && (
-        <Form
-          method="post"
-          encType="multipart/form-data"
-          className="flex flex-col px-3 py-4 border rounded bg-gray-100"
-        >
+        <Form method="post" encType="multipart/form-data" className="flex flex-col px-3 py-4 border rounded bg-white">
           <label htmlFor="timecardfile" className="mb-2">
             Select the <span className="text-blue-700 italic">NGTecoTime report-xxxx.csv</span> file:
           </label>
@@ -93,7 +89,7 @@ export default function TimeSheetNew() {
               id="timecardfile"
               name="timecardfile"
               type="file"
-              className="bg-white border flex-grow w-full md:w-auto"
+              className="bg-gray-100 border flex-grow w-full md:w-auto"
               onChange={(e) => {
                 setUploadDisabled(e.target.value === '');
               }}

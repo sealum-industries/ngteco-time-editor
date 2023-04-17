@@ -81,7 +81,7 @@ const TimeSheetPrint = React.forwardRef((props: TimeSheetPrintPropTypes, ref: Ti
       setStartdate(dayjs(props.timesheet.pp_from, 'YYYY-MM-DD'));
       const quotient = Math.floor(props.timesheet.employees.length / 6);
       const remainder = props.timesheet.employees.length % 6 === 0 ? 0 : 1;
-      console.log(quotient, remainder, quotient + remainder);
+      // console.log(quotient, remainder, quotient + remainder);
       setPages(quotient + remainder);
     }
   }, [props]);

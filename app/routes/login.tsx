@@ -19,7 +19,7 @@ export const action: ActionFunction = async ({ request }): Promise<any> => {
   const user = await verifyLogin(name, password as string);
 
   // If no user is returned, return the error
-  console.log('user', user);
+  // console.log('user', user);
 
   if (!user) {
     return {
@@ -65,8 +65,8 @@ const EyeClosedSVG = (props: Props) => (
 );
 
 export default function LoginPage() {
-  const ad = useActionData();
-  console.log('ad', ad);
+  const actionData = useActionData();
+  // console.log('actionData', actionData);
   const [showpw, setShowpw] = useState(false);
   return (
     <div className="flex w-screen h-screen justify-center items-center bg-gradient-to-r from-sky-500 via-sky-400  to-sky-500">
@@ -94,7 +94,9 @@ export default function LoginPage() {
               <EyeClosedSVG className="w-5 h-5 fill-current" />
             )}
           </button>
-          <div className={clsx('text-white text-sm', ad?.error && '!text-red-500')}>Incorrect password. Try again.</div>
+          <div className={clsx('text-white text-sm', actionData?.error && '!text-red-500')}>
+            Incorrect password. Try again.
+          </div>
         </div>
         <button type="submit" className="bg-sky-700 hover:bg-sky-800 transition-colors px-8 py-2 text-white rounded">
           Log in
