@@ -118,10 +118,12 @@ export const processTimeCSV = async (filename: string): Promise<TimeSheetType | 
               duration_total_hours_proper = duration_total_hours_proper >= 7.948 ? 8.0 : duration_total_hours_proper;
 
               // Rounding eg. 8.45, 3.95
-              const value_left = Math.round(duration_total_hours_proper); // 8    3
+              const value_left = Math.floor(duration_total_hours_proper); // 8    3
               let value_right = Math.round((duration_total_hours_proper % 1) * 100); // 45   95
-              if ((value_right >= 45 && value_right < 50) || (value_right >= 95 && value_right < 100)) {
-                duration_total_hours_proper = value_left + value_right / 100;
+              if (value_right >= 45 && value_right < 50) {
+                duration_total_hours_proper = value_left + 0.5;
+              } else if (value_right >= 95 && value_right < 100) {
+                duration_total_hours_proper = value_left + 1.0;
               }
             }
           }
